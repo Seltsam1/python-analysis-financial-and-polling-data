@@ -18,9 +18,9 @@ PyBank
 - "main.py" python script will read in the data from the csv file and produce the following metrics to an output text file:
 1. Total months
 2. Total profit/losses
-3. Average change of profit/losses
-4. Greatest increase in profits
-5. Greatest descrease in profits
+3. Average net change of profit/losses (difference from month to month)
+4. Greatest net increase in profits (difference from month to month)
+5. Greatest net descrease in profits (difference from month to month)
 
 PyRoll
 - Contains a python script to calculate aggregate metrics
