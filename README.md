@@ -8,7 +8,7 @@ Download folder structure
 There are two folders: PyBank and PyPoll
 - Both contain a Resources folder with a csv file and an Analysis folder with an example output text file
 - There is a "main.py" python script file in each folder
-- Run the "main.py" script from the appropriate folder to read the csv file and produce the output text file
+- Run the "main.py" script from the appropriate folder to read the csv file and produce the output text file ("analysis.txt")
 
 ## Features
 
@@ -23,7 +23,14 @@ PyBank
 5. Greatest descrease in profits
 
 PyRoll
-
+- Contains a python script to calculate aggregate metrics
+- The csv file "election_data" contains 3 columns (Voter ID, County, Candidate)
+- "main.py" python script will read in the data from the cvs file and produce the following to an output text file:
+1. Total number of votes cast
+2. List of candidates that received votes
+3. Percentage of votes each candidate won
+4. Number of total votes per candidate
+5. Winnder of election based on popular vote
 
 ## Licensing
 
