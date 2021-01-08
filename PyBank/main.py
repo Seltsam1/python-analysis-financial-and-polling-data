@@ -37,7 +37,7 @@ with open(csvpath) as csvfile:
         # Net total of Profit/Losses
         total_profit_loss += int(row[1])
         
-        # append value for profit/loss into list for later calculations
+        # append value for profit/loss into lists for later calculations
         profit_loss_list.append(int(row[1]))
         month_list.append(row[0])
         
@@ -51,29 +51,26 @@ for n in range(1, len(profit_loss_list)):
     change = [profit_loss_list[n] - profit_loss_list[n-1]]
     net_change.append(change)
     month_change.append(month_list[n])
-#    print(net_change)  used to for testing, kept for reference  
-#    print(month_change)  used to for testing, kept for reference 
 
 # average change
 total = 0
 for n in net_change:
     total+=sum(n)
 avg_change = round(total / len(net_change), 2)
-#print(avg_change) 
 
 # maximum changes
 max_change = max(net_change)
 max_month = month_change[net_change.index(max_change)]
 max_change = str(max_change)[1:-1]   # list slicing to remove brackets
-#print(max_change)
+
 
 # minimum changes
 min_change = min(net_change)
 min_month = month_change[net_change.index(min_change)]
-min_change = str(min_change)[1:-1]
+min_change = str(min_change)[1:-1]   # list slicing to remove brackets
 
 
-# Print results
+# Print results to terminal
 print("Financial Analysis")
 print("-" * 30)
 
@@ -85,23 +82,19 @@ print(f"Greatest Increase in Profits: {max_month} (${max_change})")
 print(f"Greatest Decrease in Profits: {min_month} (${min_change})")
 
 
-#print(f"Greatest Increase in Profits: {max_month} (${max(net_change})")
-# print(f"Greatest Decrease in Profits: {min_month} (${min_loss})")
+# Export results to text file in Analysis folder
 
+# set filepath to txt
+txt_path = os.path.join(".", "Analysis", "analysis.txt")
 
-# # Export results to text file in Analysis folder
+# open file to write
+with open(txt_path, "w") as text_file:
 
-# # set filepath to txt
-# txt_path = os.path.join(".", "Analysis", "analysis.txt")
-
-# # open file to write
-# with open(txt_path, "w") as text_file:
-
-#     # write text to file on new lines
-#     text_file.write("Financial Analysis\n")   # Using \n adds a new line
-#     text_file.write("-----------------------------------------\n")
-#     text_file.write(f"Total Months: {total_months}\n")
-#     text_file.write(f"Total: ${total_profit_loss}\n")
-#     text_file.write(f"Average Change: ${round(total_profit_loss / total_months, 2)}\n")
-#     text_file.write(f"Greatest Increase in Profits: {max_month} (${max_profit})\n")
-#     text_file.write(f"Greatest Decrease in Profits: {min_month} (${min_loss})\n")
+    # write text to file on new lines
+    text_file.write("Financial Analysis\n")   # Using \n adds a new line
+    text_file.write("-----------------------------------------\n")
+    text_file.write(f"Total Months: {total_months}\n")
+    text_file.write(f"Total: ${total_profit_loss}\n")
+    text_file.write(f"Average Change: ${avg_change}\n")
+    text_file.write(f"Greatest Increase in Profits: {max_month} (${max_change})\n")
+    text_file.write(f"Greatest Decrease in Profits: {min_month} (${min_change})\n")
