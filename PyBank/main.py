@@ -1,10 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[37]:
-
-
-# Python analysis of csv file with 2 columns
+# Python analysis of financial csv file with 2 columns
 
 # columns are Date as string and Profit/Losses as integer
 
@@ -60,26 +54,35 @@ for n in range(1, len(profit_loss_list)):
 #    print(net_change)  used to for testing, kept for reference  
 #    print(month_change)  used to for testing, kept for reference 
 
+# average change
+total = 0
+for n in net_change:
+    total+=sum(n)
+avg_change = round(total / len(net_change), 2)
+#print(avg_change) 
+
+# maximum changes
 max_change = max(net_change)
 max_month = month_change[net_change.index(max_change)]
+max_change = str(max_change)[1:-1]   # list slicing to remove brackets
+#print(max_change)
 
-print(max_change)
-print(max_month)
-
-
-
-
-# # Print results
-# print("Financial Analysis")
-# print("-" * 30)
-
-# print(f"Total Months: {total_months}")
-# print(f"Total: ${total_profit_loss}")
-
-#print(f"Greatest Increase in Profits: {max_month} (${max_change})")
+# minimum changes
+min_change = min(net_change)
+min_month = month_change[net_change.index(min_change)]
+min_change = str(min_change)[1:-1]
 
 
-# print(f"Average Change: ${round(total_profit_loss / total_months, 2)}")   # average change calculation with rounding
+# Print results
+print("Financial Analysis")
+print("-" * 30)
+
+print(f"Total Months: {total_months}")
+print(f"Total: ${total_profit_loss}")
+
+print(f"Average Change: ${avg_change}") 
+print(f"Greatest Increase in Profits: {max_month} (${max_change})")
+print(f"Greatest Decrease in Profits: {min_month} (${min_change})")
 
 
 #print(f"Greatest Increase in Profits: {max_month} (${max(net_change})")
@@ -102,10 +105,3 @@ print(max_month)
 #     text_file.write(f"Average Change: ${round(total_profit_loss / total_months, 2)}\n")
 #     text_file.write(f"Greatest Increase in Profits: {max_month} (${max_profit})\n")
 #     text_file.write(f"Greatest Decrease in Profits: {min_month} (${min_loss})\n")
-
-
-# In[ ]:
-
-
-
-
