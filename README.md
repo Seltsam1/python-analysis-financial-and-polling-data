@@ -1,4 +1,5 @@
 # python-analysis-financial-and-polling-data
+Contains two sample python scripts to read csv data and output aggregate metrics to a text file
 
 ## Getting Started
 
