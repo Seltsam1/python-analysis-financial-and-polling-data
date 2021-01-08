@@ -23,7 +23,7 @@ with open(csvpath) as csvfile:
     # skip header and save as variable
     csv_header = next(csvreader)
     
-# # Kept for reverece, used to see data
+# # Kept for reference, used to see data
 #     print(csv_header)
 #     for row in csvreader:
 #         print(row)
