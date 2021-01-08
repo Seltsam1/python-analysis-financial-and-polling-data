@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[37]:
+
+
 # Python analysis of csv file with 2 columns
 
 # columns are Date as string and Profit/Losses as integer
@@ -6,14 +12,15 @@
 import os
 import csv
 
-# set filepath to csv
-csvpath = os.path.join(".", "Resources", "budget_data.csv")
-
 # initial variables
 total_months = 0
 total_profit_loss = 0
-max_profit = 0
-min_loss = 0
+profit_loss_list = []
+month_list = []
+
+
+# set filepath to csv
+csvpath = os.path.join(".", "Resources", "budget_data.csv")
 
 # read data from csv
 with open(csvpath) as csvfile:
@@ -35,43 +42,70 @@ with open(csvpath) as csvfile:
 
         # Net total of Profit/Losses
         total_profit_loss += int(row[1])
+        
+        # append value for profit/loss into list for later calculations
+        profit_loss_list.append(int(row[1]))
+        month_list.append(row[0])
+        
+        
+# net change difference calculations
 
-        # Greatest increase in profits (date and amount)
-        if max_profit < int(row[1]):
-            max_profit = int(row[1])
-            max_month = row[0]
+net_change = []
+month_change = []
 
-        # Greatest decrease in losses (date and amount)
-        if min_loss > int(row[1]):
-            min_loss = int(row[1])
-            min_month = row[0]
+for n in range(1, len(profit_loss_list)):
+    change = [profit_loss_list[n] - profit_loss_list[n-1]]
+    net_change.append(change)
+    month_change.append(month_list[n])
+#    print(net_change)  used to for testing, kept for reference  
+#    print(month_change)  used to for testing, kept for reference 
 
-# Print results
-print("Financial Analysis")
-print("-" * 30)
+max_change = max(net_change)
+max_month = month_change[net_change.index(max_change)]
 
-print(f"Total Months: {total_months}")
-print(f"Total: ${total_profit_loss}")
-
-# average change calculation with rounding
-print(f"Average Change: ${round(total_profit_loss / total_months, 2)}")
-print(f"Greatest Increase in Profits: {max_month} (${max_profit})")
-print(f"Greatest Decrease in Profits: {min_month} (${min_loss})")
+print(max_change)
+print(max_month)
 
 
-# Export results to text file in Analysis folder
 
-# set filepath to txt
-txt_path = os.path.join(".", "Analysis", "analysis.txt")
 
-# open file to write
-with open(txt_path, "w") as text_file:
+# # Print results
+# print("Financial Analysis")
+# print("-" * 30)
 
-    # write text to file on new lines
-    text_file.write("Financial Analysis\n")   # Using \n adds a new line
-    text_file.write("-----------------------------------------\n")
-    text_file.write(f"Total Months: {total_months}\n")
-    text_file.write(f"Total: ${total_profit_loss}\n")
-    text_file.write(f"Average Change: ${round(total_profit_loss / total_months, 2)}\n")
-    text_file.write(f"Greatest Increase in Profits: {max_month} (${max_profit})\n")
-    text_file.write(f"Greatest Decrease in Profits: {min_month} (${min_loss})\n")
+# print(f"Total Months: {total_months}")
+# print(f"Total: ${total_profit_loss}")
+
+#print(f"Greatest Increase in Profits: {max_month} (${max_change})")
+
+
+# print(f"Average Change: ${round(total_profit_loss / total_months, 2)}")   # average change calculation with rounding
+
+
+#print(f"Greatest Increase in Profits: {max_month} (${max(net_change})")
+# print(f"Greatest Decrease in Profits: {min_month} (${min_loss})")
+
+
+# # Export results to text file in Analysis folder
+
+# # set filepath to txt
+# txt_path = os.path.join(".", "Analysis", "analysis.txt")
+
+# # open file to write
+# with open(txt_path, "w") as text_file:
+
+#     # write text to file on new lines
+#     text_file.write("Financial Analysis\n")   # Using \n adds a new line
+#     text_file.write("-----------------------------------------\n")
+#     text_file.write(f"Total Months: {total_months}\n")
+#     text_file.write(f"Total: ${total_profit_loss}\n")
+#     text_file.write(f"Average Change: ${round(total_profit_loss / total_months, 2)}\n")
+#     text_file.write(f"Greatest Increase in Profits: {max_month} (${max_profit})\n")
+#     text_file.write(f"Greatest Decrease in Profits: {min_month} (${min_loss})\n")
+
+
+# In[ ]:
+
+
+
+
