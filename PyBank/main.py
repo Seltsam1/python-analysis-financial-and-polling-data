@@ -61,5 +61,17 @@ print(f"Greatest Decrease in Profits: {min_month} (${min_loss})")
 
 # Export results to text file in Analysis folder
 
+# set filepath to txt
+txt_path = os.path.join(".", "Analysis", "analysis.txt")
 
+# open file to write
+with open(txt_path, "w") as text_file:
 
+    # write text to file on new lines
+    text_file.write("Financial Analysis\n")   # Using \n adds a new line
+    text_file.write("-----------------------------------------\n")
+    text_file.write(f"Total Months: {total_months}\n")
+    text_file.write(f"Total: ${total_profit_loss}\n")
+    text_file.write(f"Average Change: ${round(total_profit_loss / total_months, 2)}\n")
+    text_file.write(f"Greatest Increase in Profits: {max_month} (${max_profit})\n")
+    text_file.write(f"Greatest Decrease in Profits: {min_month} (${min_loss})\n")
