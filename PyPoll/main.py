@@ -43,10 +43,10 @@ with open(csvpath) as csvfile:
             vote_candidates[row[2]] +=1  # increase value in dictionary by 1
             
             
-        # Percentage of votes each candidate won
+# Percentage of votes each candidate won
 
 
-        # winner of election based on popular vote
+# winner of election based on popular vote
         
     
     
@@ -57,15 +57,13 @@ print("----------------------------")
 print(f"Total Votes: {vote_count}")
 print("----------------------------")
 
-# for loop to print each candidate
-for name in candidates:
-    print(f"{name}: ")
-
+# loop through dictionary of candidate names and counts of votes
+for name in vote_candidates:
+    # prints the key, calculates average with formatting for 3 decimals, then value of key pair
+    print(f"{name}: {((vote_candidates[name] / vote_count) * 100):.3f}% ({vote_candidates[name]})")    
+    
 print("----------------------------")
 
 
 # export results to text file
-
-
-
 
