@@ -11,7 +11,6 @@ vote_count = 0
 candidates = []
 vote_candidates = {}
 winner = ""
-winner_count = 0
 
 # set filepath to csv
 csvpath = os.path.join(".", "Resources", "election_data.csv")
@@ -23,11 +22,6 @@ with open(csvpath) as csvfile:
     # skip header and save as variable
     csv_header = next(csvreader)
     
-# # Kept for reverece, used to see data
-#     print(csv_header)
-#     for row in csvreader:
-#         print(row)
-        
     # iterate through rows
     for row in csvreader:
     
@@ -41,19 +35,18 @@ with open(csvpath) as csvfile:
             vote_candidates[row[2]] = 1  # add candidate to dictionary as key with value 1
         else:
             vote_candidates[row[2]] +=1  # increase value in dictionary by 1
-            
-            
-# Percentage of votes each candidate won
 
 
 # winner of election based on popular vote
-        
-    
+# stores key with maximum value into variable winner
+winner = max(vote_candidates, key=vote_candidates.get)
+
     
 # print results to terminal
 print("Election Results")
 print("----------------------------")
 
+# print total vote count
 print(f"Total Votes: {vote_count}")
 print("----------------------------")
 
@@ -62,6 +55,11 @@ for name in vote_candidates:
     # prints the key, calculates average with formatting for 3 decimals, then value of key pair
     print(f"{name}: {((vote_candidates[name] / vote_count) * 100):.3f}% ({vote_candidates[name]})")    
     
+print("----------------------------")
+
+# print winner of election
+print(f"Winner: {winner}")
+
 print("----------------------------")
 
 
