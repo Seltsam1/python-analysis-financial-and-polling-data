@@ -65,3 +65,23 @@ print("----------------------------")
 
 # export results to text file
 
+# set filepath to txt
+txt_path = os.path.join(".", "Analysis", "analysis.txt")
+
+# open file to write
+with open(txt_path, "w") as text_file:
+    
+    # write text to file on new lines
+    text_file.write("Election Results\n")
+    text_file.write("----------------------------\n")
+    text_file.write(f"Total Votes: {vote_count}\n")
+    text_file.write("----------------------------\n")
+
+    for name in vote_candidates:
+        # writes the key, calculates average with formatting for 3 decimals, then value of key pair
+        text_file.write(f"{name}: {((vote_candidates[name] / vote_count) * 100):.3f}% ({vote_candidates[name]})\n")    
+    
+    text_file.write("----------------------------\n")
+    text_file.write(f"Winner: {winner}\n")
+    text_file.write("----------------------------\n")
+
